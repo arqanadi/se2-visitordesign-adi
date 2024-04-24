@@ -1,17 +1,20 @@
 import java.util.*;
-public class TelcoAllowance implements UsagePromo{
+public class TelcoAllowance implements UsagePromo {
     private static Map<String, Double> allowanceMap = new HashMap<>();
 
-
-    static{
-        allowanceMap.put("Smart", 500.00);
-        allowanceMap.put("Globe", 450.00);
-        allowanceMap.put("Ditto", 400.00);
+    static {
+        allowanceMap.put("smart", 500.00);
+        allowanceMap.put("globe", 450.00);
+        allowanceMap.put("ditto", 400.00);
     }
 
-
     @Override
-    public String showAllowance(String telcoName, double money) {
-        return allowanceMap.get(telcoName) * money;
+    public double showAllowance(String telcoName, double money) {
+        Double allowance = allowanceMap.get(telcoName);
+        if (allowance == null) {
+            System.out.println("Telco " + telcoName + " not found in allowance map.");
+            return 0.0;
+        }
+        return allowance;
     }
 }
